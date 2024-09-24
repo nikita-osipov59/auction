@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "./style.module.scss";
 import { FC } from "react";
 
