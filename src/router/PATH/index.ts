@@ -1,4 +1,6 @@
 export const ROUTER_PATH = {
   HOME: "/",
-  // NOTFOUNDPAGE: "*",
+  FEATURES: "features",
+  PRICING: "pricing",
+  NOTFOUNDPAGE: "*",
 };

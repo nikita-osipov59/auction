@@ -1,0 +1,25 @@
+@import "@/styles/variables.module";
+
+.header {
+  background-color: $color-header-bg;
+  padding: 8px 0px;
+  .nav {
+    max-width: 1280px;
+    padding: 0px 10px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .list {
+    display: flex;
+    gap: 15px;
+    .link {
+      color: $color-item-list;
+      transition: $transition-default;
+      &:hover {
+        opacity: 75%;
+      }
+    }
+  }
+}

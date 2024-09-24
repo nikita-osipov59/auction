@@ -6,6 +6,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route path={ROUTER_PATH.HOME} element={<HomePage />} />
+      <Route path={ROUTER_PATH.NOTFOUNDPAGE} element={<HomePage />} />
     </Routes>
   );
 };

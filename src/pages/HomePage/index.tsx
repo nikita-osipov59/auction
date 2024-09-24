@@ -1,11 +1,9 @@
-import { Container } from "@/components/ui/Container";
+import { Header } from "@/components/ui/";
 
 export const HomePage = () => {
   return (
     <>
-      <Container>
-        <div>HomePage</div>
-      </Container>
+      <Header />
     </>
   );
 };
