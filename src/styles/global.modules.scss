@@ -1,0 +1,23 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: $lineHeight-default;
+  font-weight: $fontWeight-regular;
+  font-size: $fontSize-default;
+  color: $color-main;
+  background-color: $color-background;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+main {
+  position: relative;
+}
