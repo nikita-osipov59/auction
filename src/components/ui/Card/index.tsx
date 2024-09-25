@@ -103,7 +103,7 @@ export const Card = () => {
                 item.bonusInfo.map((bonus, index) => (
                   <p key={index}>
                     {bonus}
-                    <span className="bonus">{[bonus]}</span>
+                    <span className="bonus">{"[bonus]"}</span>
                   </p>
                 ))}
             </div>
