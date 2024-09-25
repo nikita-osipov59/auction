@@ -1,52 +1,17 @@
-import { useEffect, useState } from "react";
-import { getCards } from "@/api";
+import { useEffect } from "react";
+import { useCardsStore } from "@/store/useCardsStore.store";
 import style from "./style.module.scss";
 
-interface Bonus {
-  bonusName: string;
-  textMinAndMax: string;
-}
-
-interface DefaultBonusInfo {
-  defaultBonuses: Bonus[];
-}
-
-interface CardItem {
-  uniqueId: number;
-  itemId: string;
-  name: string;
-  qlt: number;
-  charge: number;
-  cost: number;
-  targetPrice: number;
-  profit: number;
-  explored?: boolean;
-  ptn?: string;
-  qltInfo: {
-    labelQlt: string;
-    labelPercentQlt?: string;
-  };
-  defaultBonusInfo: DefaultBonusInfo;
-  bonusInfo?: string[];
-}
-
 export const Card = () => {
-  const [cards, setCards] = useState<CardItem[]>([]);
-
-  const getCardsList = async () => {
-    const currentCards = await getCards();
-    setCards(currentCards);
-  };
+  const { cards, fetchCard } = useCardsStore();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getCardsList();
+      fetchCard();
     }, 10000);
 
-    // getCardsList();
-
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchCard]);
 
   return (
     <ul className={style.box}>
@@ -111,15 +76,17 @@ export const Card = () => {
           <div className={style.priceWrapper}>
             <p>
               Cost
-              <span className="cost">{item.cost}</span>
+              <span className="cost">{item.cost} RUB</span>
             </p>
             <p>
               Target Price
-              <span className="price">{item.targetPrice}</span>
+              <span className="price">{item.targetPrice} RUB</span>
             </p>
             <p>
               Profit
-              <span className="profit">{item.profit}</span>
+              <span className="profit">
+                +{item.profit} RUB ({item.profitPercent}%)
+              </span>
             </p>
           </div>
         </li>
