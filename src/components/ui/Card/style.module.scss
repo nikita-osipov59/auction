@@ -1,0 +1,50 @@
+@import "@/styles/variables.module";
+
+.box {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  .wrapper {
+    padding: 15px;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $color-card-background;
+    border: 1px solid $color-borderOut;
+    border-radius: 15px;
+    min-width: 320px;
+    margin-bottom: 15px;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: $fontSize-light;
+    .img {
+      max-width: 60px;
+    }
+  }
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .border {
+    border-top: 1px solid $color-borderIn;
+    margin: 5px 0px;
+  }
+  .white {
+    color: $color-secondary;
+  }
+  .priceWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #2a2f35;
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+  }
+}

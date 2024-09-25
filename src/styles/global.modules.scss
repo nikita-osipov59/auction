@@ -21,6 +21,44 @@ body {
 main {
   position: relative;
 }
+
 .active {
   color: $color-active !important;
+}
+
+.Common {
+  color: $color-common;
+}
+
+.Uncommon {
+  color: $color-unCommon;
+}
+.Special {
+  color: $color-special;
+}
+.Rare {
+  color: $color-rare;
+}
+.Exceptional {
+  color: $color-exceptional;
+}
+.Legendary {
+  color: $color-legendary;
+}
+.upgrade {
+  color: $color-upgrade;
+}
+.bonus {
+  color: #00bfff;
+}
+.cost {
+  color: $color-cost;
+}
+
+.price {
+  color: $color-price;
+}
+
+.profit {
+  color: $color-profit;
 }
