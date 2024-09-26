@@ -12,6 +12,7 @@ export const Card = () => {
   };
 
   useEffect(() => {
+    fetchCard();
     const interval = setInterval(() => {
       fetchCard();
     }, 10000);
@@ -67,7 +68,7 @@ export const Card = () => {
               {item.defaultBonusInfo.defaultBonuses.map((bonus, index) => (
                 <p key={index}>
                   {bonus.bonusName}
-                  <span className="upgrade">{bonus.textMinAndMax}</span>
+                  <span className="profit">{bonus.textMinAndMax}</span>
                 </p>
               ))}
               {item.bonusInfo &&

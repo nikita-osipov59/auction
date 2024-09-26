@@ -41,7 +41,7 @@ export const useCardsStore = create<State>((set) => ({
   cards: [],
   fetchCard: async () => {
     try {
-      const response = await axios.get(import.meta.env.VITE_API_KEY, {
+      const response = await axios.get(import.meta.env.VITE_API_LOTS, {
         headers: {
           accept: "application/json",
         },
