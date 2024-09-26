@@ -1,9 +1,15 @@
 import { useEffect } from "react";
+
 import { useCardsStore } from "@/store/useCardsStore.store";
+
 import style from "./style.module.scss";
 
 export const Card = () => {
   const { cards, fetchCard } = useCardsStore();
+
+  const formatPrice = (value: number) => {
+    return new Intl.NumberFormat("ru-RU").format(value);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,20 +32,20 @@ export const Card = () => {
               />
               <div className={item.qltInfo.labelQlt}>
                 {item.name}
-                {item.ptn && ` | ${item.ptn}`}
+                {item.ptn && ` | +${item.ptn}`}
               </div>
             </div>
             <div className={item.qltInfo.labelQlt}>
-              <p>
-                <span>{item.qltInfo.labelQlt}</span>
-                <span>
+              <div className={style.quality}>
+                <p>{item.qltInfo.labelQlt}</p>
+                <p>
                   {item.explored ? (
                     <span>{item.qltInfo.labelPercentQlt}</span>
                   ) : (
                     <span>Not explored</span>
                   )}
-                </span>
-              </p>
+                </p>
+              </div>
             </div>
             <hr className={style.border} />
             <div className={style.info}>
@@ -58,8 +64,8 @@ export const Card = () => {
             </div>
             <hr className={style.border} />
             <div className={style.details}>
-              {item.defaultBonusInfo.defaultBonuses.map((bonus) => (
-                <p key={bonus.bonusName}>
+              {item.defaultBonusInfo.defaultBonuses.map((bonus, index) => (
+                <p key={index}>
                   {bonus.bonusName}
                   <span className="upgrade">{bonus.textMinAndMax}</span>
                 </p>
@@ -76,16 +82,16 @@ export const Card = () => {
           <div className={style.priceWrapper}>
             <p>
               Cost
-              <span className="cost">{item.cost} RUB</span>
+              <span className="cost">{formatPrice(item.cost)} RUB</span>
             </p>
             <p>
               Target Price
-              <span className="price">{item.targetPrice} RUB</span>
+              <span className="price">{formatPrice(item.targetPrice)} RUB</span>
             </p>
             <p>
               Profit
               <span className="profit">
-                +{item.profit} RUB ({item.profitPercent}%)
+                + {formatPrice(item.profit)} RUB ({item.profitPercent}%)
               </span>
             </p>
           </div>

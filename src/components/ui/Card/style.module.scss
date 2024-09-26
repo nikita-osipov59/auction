@@ -4,9 +4,6 @@
   display: flex;
   gap: 30px;
   overflow-x: auto;
-  .wrapper {
-    padding: 15px;
-  }
   li {
     display: flex;
     flex-direction: column;
@@ -16,26 +13,38 @@
     border-radius: 15px;
     min-width: 320px;
     margin-bottom: 15px;
+    flex: 0 0 auto;
   }
-  .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: $fontSize-light;
-    .img {
-      max-width: 60px;
+  .wrapper {
+    padding: 15px;
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: $fontSize-light;
+      .img {
+        max-width: 60px;
+      }
+    }
+    .quality {
+      display: flex;
+      justify-content: space-between;
+    }
+    .border {
+      border-top: 1px solid $color-borderIn;
+      margin: 5px 0px;
     }
   }
   p {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    span {
+      margin-left: 20px;
+    }
   }
-  .border {
-    border-top: 1px solid $color-borderIn;
-    margin: 5px 0px;
-  }
+
   .white {
     color: $color-secondary;
   }
