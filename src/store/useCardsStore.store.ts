@@ -1,41 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-interface Bonus {
-  bonusName: string;
-  textMinAndMax: string;
-}
-
-interface DefaultBonusInfo {
-  defaultBonuses: Bonus[];
-}
-
-interface QltInfo {
-  labelQlt: string;
-  labelPercentQlt?: string;
-}
-
-interface CardItem {
-  name: string;
-  charge: number;
-  cost: number;
-  profit: number;
-  profitPercent: number;
-  targetPrice: number;
-  uniqueId: number;
-  itemId: string;
-  qlt: number;
-  explored?: boolean;
-  ptn?: string;
-  qltInfo: QltInfo;
-  defaultBonusInfo: DefaultBonusInfo;
-  bonusInfo?: string[];
-}
-
-interface State {
-  cards: CardItem[];
-  fetchCard: () => Promise<void>;
-}
+import { State } from "@/utils/interfaces";
 
 export const useCardsStore = create<State>((set) => ({
   cards: [],

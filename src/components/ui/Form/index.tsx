@@ -1,30 +1,47 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { useFormStore } from "@/store";
+import { useCardsStore, useFormStore } from "@/store";
+import { CardItem, IFormInput } from "@/utils/interfaces";
+
+import { Trash } from "@/components/ui";
 
 import style from "./style.module.scss";
-import { Trash } from "../Trash";
-
-interface IFormInput {
-  artifact: string;
-  rarity: string;
-  pattern: string;
-  MinProfit: string;
-  MinPercProfit: string;
-}
 
 export const Form = () => {
-  const { register, handleSubmit } = useForm<IFormInput>();
+  const [prevCards, setPrevCards] = useState<CardItem[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const { cards } = useCardsStore();
+
+  const { register, handleSubmit, resetField } = useForm<IFormInput>({
+    defaultValues: {
+      artifact: 0,
+    },
+  });
   const { artifact, fetchArtifacts } = useFormStore();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
   };
 
+  const audio = new Audio("/public/notification.mp3");
+
+  const playNotificationSound = () => {
+    audio.volume = 0.2;
+    audio.play();
+  };
+
   useEffect(() => {
     fetchArtifacts();
   }, [fetchArtifacts]);
+
+  useEffect(() => {
+    if (isChecked && cards.length > prevCards.length) {
+      playNotificationSound();
+    }
+    setPrevCards(cards);
+  }, [cards]);
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -84,12 +101,28 @@ export const Form = () => {
           <button className={style.enterFilter} type="submit">
             Enter filters
           </button>
-          <button className={style.clearFilter} type="submit">
+          <button className={style.clearFilter} type="reset">
             <Trash /> Clear filters
           </button>
-          <button className={style.clearArtifacts} type="submit">
+          <button
+            className={style.clearArtifacts}
+            type="button"
+            onClick={() => resetField("artifact")}
+          >
             <Trash /> Clear artifacts
           </button>
+        </div>
+        <div className={style.checkbox}>
+          <div>
+            <input id="sound" type="checkbox" />
+            <label onClick={() => setIsChecked(!isChecked)} htmlFor="sound">
+              Sound notification
+            </label>
+          </div>
+          <div>
+            <input id="commission" type="checkbox" />
+            <label htmlFor="commission">Include commission in the profit</label>
+          </div>
         </div>
       </div>
     </form>

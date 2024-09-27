@@ -35,6 +35,7 @@
   .box {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
     .list {
       display: flex;
       gap: 30px;
@@ -49,6 +50,13 @@
       gap: 10px;
       align-self: end;
       color: $color-btn-light;
+    }
+    .checkbox {
+      display: flex;
+      gap: 15px;
+      input {
+        margin-right: 10px;
+      }
     }
   }
   .enterFilter {

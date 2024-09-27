@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useCardsStore } from "@/store/useCardsStore.store";
+import { useCardsStore } from "@/store";
 
 import style from "./style.module.scss";
 
@@ -18,7 +18,7 @@ export const Card = () => {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [fetchCard]);
+  }, []);
 
   return (
     <ul className={style.box}>
