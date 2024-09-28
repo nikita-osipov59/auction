@@ -113,7 +113,7 @@ export const Form = () => {
           </button>
         </div>
         <div className={style.checkbox}>
-          <label onChange={(e) => setIsChecked(!isChecked)} htmlFor="sound">
+          <label onChange={() => setIsChecked(!isChecked)} htmlFor="sound">
             <input id="sound" type="checkbox" />
             Sound notification
           </label>
