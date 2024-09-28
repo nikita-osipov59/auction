@@ -25,7 +25,7 @@ export const Form = () => {
     console.log(data);
   };
 
-  const audio = new Audio("/public/notification.mp3");
+  const audio = new Audio("/notification.mp3");
 
   const playNotificationSound = () => {
     audio.volume = 0.2;
@@ -113,12 +113,10 @@ export const Form = () => {
           </button>
         </div>
         <div className={style.checkbox}>
-          <div>
+          <label onChange={(e) => setIsChecked(!isChecked)} htmlFor="sound">
             <input id="sound" type="checkbox" />
-            <label onClick={() => setIsChecked(!isChecked)} htmlFor="sound">
-              Sound notification
-            </label>
-          </div>
+            Sound notification
+          </label>
           <div>
             <input id="commission" type="checkbox" />
             <label htmlFor="commission">Include commission in the profit</label>
