@@ -10,19 +10,23 @@ import style from "./style.module.scss";
 
 export const Form = () => {
   const [prevCards, setPrevCards] = useState<CardItem[]>([]);
-  const [isChecked, setIsChecked] = useState(false);
-
-  const { cards } = useCardsStore();
-
-  const { register, handleSubmit, resetField } = useForm<IFormInput>({
-    defaultValues: {
-      artifact: 0,
-    },
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [submitData, setSubmitData] = useState<IFormInput>({
+    artifact: "",
+    rarity: "",
+    pattern: "",
+    minProfit: "",
+    minPercProfit: "",
   });
+
+  const { cards, getCards } = useCardsStore();
   const { artifact, fetchArtifacts } = useFormStore();
+
+  const { register, handleSubmit, resetField } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
+    setSubmitData(data);
   };
 
   const audio = new Audio("/notification.mp3");
@@ -34,7 +38,15 @@ export const Form = () => {
 
   useEffect(() => {
     fetchArtifacts();
-  }, [fetchArtifacts]);
+  }, []);
+
+  useEffect(() => {
+    getCards(submitData);
+    const interval = setInterval(() => {
+      getCards(submitData);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [submitData]);
 
   useEffect(() => {
     if (isChecked && cards.length > prevCards.length) {
@@ -50,20 +62,22 @@ export const Form = () => {
           <li className={style.item}>
             <label>Artifact name</label>
             <select {...register("artifact")}>
-              <option value="0">All</option>
-              {artifact.artifactNames.list.map((item, index) => (
-                <option key={index + 1} value={index + 1}>
-                  {item}
-                </option>
-              ))}
+              <option value="">All</option>
+              {Object.entries(artifact.artifactNames.map!).map(
+                ([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                )
+              )}
             </select>
           </li>
           <li className={style.item}>
             <label>Rarity</label>
             <select {...register("rarity")}>
-              <option value="0">All</option>
+              <option value="">All</option>
               {artifact.artifactRarity.list.map((item, index) => (
-                <option key={index + 1} value={index + 1}>
+                <option key={index} value={index}>
                   {item}
                 </option>
               ))}
@@ -72,9 +86,9 @@ export const Form = () => {
           <li className={style.item}>
             <label>Pattern</label>
             <select {...register("pattern")}>
-              <option value="0">All</option>
+              <option value="">All</option>
               {artifact.artifactPattern.list.map((item, index) => (
-                <option key={index + 1} value={index + 1}>
+                <option key={index} value={index}>
                   {item}
                 </option>
               ))}
@@ -83,7 +97,7 @@ export const Form = () => {
           <li className={style.item}>
             <label>Min profit</label>
             <input
-              {...register("MinProfit")}
+              {...register("minProfit")}
               type="number"
               placeholder="Enter min profit"
             />
@@ -91,7 +105,7 @@ export const Form = () => {
           <li className={style.item}>
             <label>Min % profit</label>
             <input
-              {...register("MinPercProfit")}
+              {...register("minPercProfit")}
               type="number"
               placeholder="Enter min %"
             />

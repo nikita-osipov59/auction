@@ -31,13 +31,13 @@ export interface CardItem {
 
 export interface State {
   cards: CardItem[];
-  fetchCard: () => Promise<void>;
+  getCards: (params: IFormInput) => Promise<void>;
 }
 
 export interface IFormInput {
-  artifact: number;
-  rarity: string;
-  pattern: string;
-  MinProfit: string;
-  MinPercProfit: string;
+  artifact?: string;
+  rarity?: string;
+  pattern?: string;
+  minProfit?: string;
+  minPercProfit?: string;
 }

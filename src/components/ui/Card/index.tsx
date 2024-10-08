@@ -1,24 +1,13 @@
-import { useEffect } from "react";
-
 import { useCardsStore } from "@/store";
 
 import style from "./style.module.scss";
 
 export const Card = () => {
-  const { cards, fetchCard } = useCardsStore();
+  const { cards } = useCardsStore();
 
   const formatPrice = (value: number) => {
     return new Intl.NumberFormat("ru-RU").format(value);
   };
-
-  useEffect(() => {
-    fetchCard();
-    const interval = setInterval(() => {
-      fetchCard();
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <ul className={style.box}>

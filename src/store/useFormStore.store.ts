@@ -3,6 +3,7 @@ import axios from "axios";
 
 interface Artifact {
   list: [];
+  map?: { [key: string]: [] };
 }
 
 interface State {
@@ -16,7 +17,7 @@ interface State {
 
 export const useFormStore = create<State>((set) => ({
   artifact: {
-    artifactNames: { list: [] },
+    artifactNames: { list: [], map: {} },
     artifactRarity: { list: [] },
     artifactPattern: { list: [] },
   },
