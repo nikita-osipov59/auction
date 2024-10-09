@@ -55,5 +55,19 @@
     background-color: #2a2f35;
     padding: 15px;
     border-radius: 0 0 15px 15px;
+    .profitBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .profitBtn {
+      align-items: center;
+      display: flex;
+      gap: 5px;
+      cursor: pointer;
+      &:hover {
+        color: deepskyblue;
+      }
+    }
   }
 }

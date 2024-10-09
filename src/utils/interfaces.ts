@@ -30,6 +30,7 @@ export interface CardItem {
 }
 
 export interface State {
+  loading: boolean;
   cards: CardItem[];
   getCards: (params: IFormInput) => Promise<void>;
 }
@@ -40,4 +41,26 @@ export interface IFormInput {
   pattern?: string;
   minProfit?: string;
   minPercProfit?: string;
+}
+
+export interface History {
+  isOpen: boolean;
+  loading: boolean;
+  history: HistoryItem[];
+  toggleModal: () => void;
+  getHistory: (id: number) => Promise<void>;
+}
+
+export interface HistoryItem {
+  itemId: string;
+  itemName: string;
+  qltName: string;
+  time: string;
+  bonuses?: string[] | undefined;
+  ptn?: number;
+  price: number;
+}
+
+export interface ID {
+  id: number;
 }

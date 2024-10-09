@@ -4,6 +4,7 @@ import axios from "axios";
 import { State, IFormInput } from "@/utils/interfaces";
 
 export const useCardsStore = create<State>((set) => ({
+  loading: false,
   cards: [],
   getCards: async ({
     artifact,
@@ -30,6 +31,7 @@ export const useCardsStore = create<State>((set) => ({
         }
       );
       set((state) => ({ cards: [...state.cards, ...response.data] }));
+      set({ loading: true });
     } catch (error) {
       console.error("Error fetching cards:", error);
     }
