@@ -44,10 +44,8 @@ export interface IFormInput {
 }
 
 export interface History {
-  isOpen: boolean;
   loading: boolean;
   history: HistoryItem[];
-  toggleModal: () => void;
   getHistory: (id: number) => Promise<void>;
 }
 
@@ -63,4 +61,18 @@ export interface HistoryItem {
 
 export interface ID {
   id: number;
+}
+
+export interface PopupsState {
+  advancedSettings: boolean;
+  profit: boolean;
+}
+
+export interface PopupStore {
+  popups: PopupsState;
+  toggleModal: (popup: keyof PopupsState) => void;
+}
+
+export interface SvgSize {
+  size: number;
 }

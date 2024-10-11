@@ -1,12 +1,14 @@
-import { useCardsStore, useHistoryStore } from "@/store";
+import { useCardsStore, useHistoryStore, usePopupStore } from "@/store";
 
 import { ProfitHistory } from "@/components";
-import { History, Loader } from "@/components/ui";
+import { History } from "@/components/svg";
+import { Loader, Popup } from "@/components/ui";
 
 import style from "./style.module.scss";
 
 export const Card = () => {
-  const { getHistory, isOpen, toggleModal } = useHistoryStore();
+  const { getHistory } = useHistoryStore();
+  const { popups, toggleModal } = usePopupStore();
   const { cards, loading } = useCardsStore();
 
   const formatPrice = (value: number) => {
@@ -14,7 +16,7 @@ export const Card = () => {
   };
 
   const handleClick = (id: number) => {
-    toggleModal();
+    toggleModal("profit");
     getHistory(id);
   };
 
@@ -95,14 +97,18 @@ export const Card = () => {
                   className={style.profitBtn}
                   onClick={() => handleClick(item.uniqueId)}
                 >
-                  Profit <History />
+                  Profit <History size={20} />
                 </span>
                 <span className="profit">
                   + {formatPrice(item.profit)} RUB ({item.profitPercent}%)
                 </span>
               </div>
             </div>
-            {isOpen && <ProfitHistory id={item.uniqueId} />}
+            {popups.profit && (
+              <Popup name="profit">
+                <ProfitHistory id={item.uniqueId} />
+              </Popup>
+            )}
           </li>
         ))
       ) : (

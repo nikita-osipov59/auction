@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { useCardsStore, useFormStore } from "@/store";
-import { CardItem, IFormInput } from "@/utils/interfaces";
+import { useCardsStore, useFormStore, usePopupStore } from "@/store";
 
-import { Trash } from "@/components/ui";
+import { CardItem, IFormInput } from "@/utils/interfaces";
+import { AdvancedSettings } from "@/components";
+import { Settings, Trash } from "@/components/svg";
 
 import style from "./style.module.scss";
 
 export const Form = () => {
+  const [isActiveSettings, setIsActiveSetting] = useState<boolean>(false);
   const [prevCards, setPrevCards] = useState<CardItem[]>([]);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [submitData, setSubmitData] = useState<IFormInput>({
@@ -21,7 +23,7 @@ export const Form = () => {
 
   const { cards, getCards } = useCardsStore();
   const { artifact, fetchArtifacts } = useFormStore();
-
+  const { toggleModal, popups } = usePopupStore();
   const { register, handleSubmit, resetField } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -116,25 +118,42 @@ export const Form = () => {
             Enter filters
           </button>
           <button className={style.clearFilter} type="reset">
-            <Trash /> Clear filters
+            <Trash size={20} /> Clear filters
           </button>
           <button
             className={style.clearArtifacts}
             type="button"
             onClick={() => resetField("artifact")}
           >
-            <Trash /> Clear artifacts
+            <Trash size={20} /> Clear artifacts
           </button>
+          {isActiveSettings && (
+            <button
+              className={style.settings}
+              type="button"
+              onClick={() => toggleModal("advancedSettings")}
+            >
+              <Settings size={20} /> Settings
+            </button>
+          )}
+          {popups.advancedSettings && <AdvancedSettings />}
         </div>
         <div className={style.checkbox}>
           <label onChange={() => setIsChecked(!isChecked)} htmlFor="sound">
             <input id="sound" type="checkbox" />
             Sound notification
           </label>
-          <div>
+          <label htmlFor="commission">
             <input id="commission" type="checkbox" />
-            <label htmlFor="commission">Include commission in the profit</label>
-          </div>
+            Include commission in the profit
+          </label>
+          <label
+            htmlFor="advanced"
+            onChange={() => setIsActiveSetting(!isActiveSettings)}
+          >
+            <input id="advanced" type="checkbox" />
+            Advanced settings
+          </label>
         </div>
       </div>
     </form>

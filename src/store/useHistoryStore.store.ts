@@ -4,10 +4,8 @@ import axios from "axios";
 import { History } from "@/utils/interfaces";
 
 export const useHistoryStore = create<History>((set) => ({
-  isOpen: false,
   loading: false,
   history: [],
-  toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
   getHistory: async (id) => {
     try {
       set({ loading: false });
