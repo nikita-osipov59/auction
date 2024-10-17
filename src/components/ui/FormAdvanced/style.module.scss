@@ -1,0 +1,99 @@
+@import "@/styles/variables.module";
+
+@mixin settings {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+@mixin redBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: $color-btn-br;
+  background-color: transparent;
+  border: 1px solid $color-btn-br;
+  transition: $transition-default;
+}
+
+@mixin redHoverBtn {
+  color: $color-btn-light;
+  border: 1px solid $color-btn-br;
+  transition: $transition-default;
+  background-color: $color-btn-br;
+}
+
+.form {
+  margin-top: 30px;
+  select,
+  input {
+    background-color: $color-btn-light;
+    @include settings;
+    color: black;
+    cursor: pointer;
+  }
+
+  .box {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    .list {
+      display: flex;
+      gap: 30px;
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      color: $color-btn-light;
+    }
+    .checkbox {
+      display: flex;
+      gap: 15px;
+      input {
+        margin-right: 10px;
+      }
+    }
+  }
+  .enterFilter {
+    @include settings;
+    transition: $transition-default;
+    background-color: $color-btn;
+    &:hover {
+      opacity: 80%;
+    }
+  }
+  .clearFilter {
+    @include settings;
+    @include redBtn;
+    &:hover {
+      @include redHoverBtn;
+    }
+  }
+  .clearArtifacts {
+    @include settings;
+    @include redBtn;
+    &:hover {
+      @include redHoverBtn;
+    }
+  }
+  .settings {
+    @include settings;
+    @include redBtn;
+    &:hover {
+      @include redHoverBtn;
+    }
+  }
+}
+
+.dataList {
+  display: flex;
+}
+
+.padding {
+  padding: 0px 20px;
+}

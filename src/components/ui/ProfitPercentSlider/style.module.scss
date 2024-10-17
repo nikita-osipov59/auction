@@ -1,0 +1,11 @@
+@import "@/styles/variables.module";
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

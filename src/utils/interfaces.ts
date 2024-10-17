@@ -36,11 +36,11 @@ export interface State {
 }
 
 export interface IFormInput {
-  artifact?: string;
-  rarity?: string;
-  pattern?: string;
-  minProfit?: string;
-  minPercProfit?: string;
+  artifact?: string | null;
+  rarity?: number | number[] | null;
+  pattern?: number | number[] | null;
+  minProfit?: number | number[] | null;
+  minPercProfit?: number | number[] | null;
 }
 
 export interface History {

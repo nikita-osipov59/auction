@@ -16,8 +16,8 @@ export const useCardsStore = create<State>((set) => ({
     const urlParams = new URLSearchParams();
 
     if (artifact) urlParams.append("itemId", artifact);
-    if (rarity) urlParams.append("qlt", rarity);
-    if (pattern) urlParams.append("ptn", pattern);
+    if (rarity) urlParams.append("qlt", rarity.toString());
+    if (pattern) urlParams.append("ptn", pattern.toString());
     if (minProfit) urlParams.append("minProfit", minProfit.toString());
     if (minPercProfit)
       urlParams.append("profitPercent", minPercProfit.toString());
